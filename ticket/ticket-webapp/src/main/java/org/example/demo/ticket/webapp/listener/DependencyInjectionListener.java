@@ -1,7 +1,8 @@
 package org.example.demo.ticket.webapp.listener;
 
-import org.example.demo.ticket.business.ManagerFactory;
-import org.example.demo.ticket.business.manager.ProjetManager;
+import org.example.demo.ticket.business.contract.manager.ProjetManager;
+import org.example.demo.ticket.business.impl.ManagerFactory;
+import org.example.demo.ticket.business.impl.manager.ProjetManagerImpl;
 import org.example.demo.ticket.business.manager.TicketManager;
 import org.example.demo.ticket.webapp.rest.resource.AbstractResource;
 
@@ -16,7 +17,7 @@ public class DependencyInjectionListener  implements ServletContextListener {
         // Création de l'instance de ManagerFactory
         ManagerFactory vManagerFactory = new ManagerFactory();
         //Injection de Dépendances
-        vManagerFactory.setProjetManager(new ProjetManager());
+        vManagerFactory.setProjetManager(new ProjetManagerImpl());//Le seul endroit où l'on utilise l'implémentation
         vManagerFactory.setTicketManager(new TicketManager());
         // Injection de l'instance de ManagerFactory dans la classe AbstractResource
         AbstractResource.setManagerFactory(vManagerFactory);
