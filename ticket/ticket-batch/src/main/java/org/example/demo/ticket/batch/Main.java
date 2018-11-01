@@ -5,6 +5,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.example.demo.ticket.business.contract.ManagerFactory;
 import org.example.demo.ticket.model.exception.TechnicalException;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
 /**
@@ -28,10 +29,14 @@ public class Main {
         /*ApplicationContext vApplicationContext
                 = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
 */
+
         // Il est possible de récupérer un bean dans ce contexte :
       /*  ManagerFactory vManagerFactory
                 = vApplicationContext.getBean("managerFactory", ManagerFactory.class);
 */
+
+            ApplicationContext vApplicationContext
+                    =new AnnotationConfigApplicationContext(SpringConfiguration.class);
         try {
             if (pArgs.length < 1) {
                 throw new TechnicalException("Veuillez préciser le traitement à effectuer !");
